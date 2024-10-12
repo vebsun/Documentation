@@ -278,19 +278,32 @@ Fine-tune on Code-related Tasks: Supplement fine-tuning with code comprehension 
 
 
 # Workflow
-## Inference
+## Inference flow
 ```mermaid
-flowchart LR;
-User_Input_query([User Input])-->UI_layer-->User_query_Enrichment-->Query_Routing((Query Rewrite according to retriavel system));
+flowchart LR
+User_Input_query([User Input])-->UI_layer-->User_query_Enrichment-->Query_Routing((Create Query for each retriavel system));
 Query_Routing-->Graph_DB;
 Query_Routing-->Vectory_DB;
 Query_Routing-->BM25;
 Vectory_DB-->Re_Ranking;
 BM25-->Re_Ranking;
-Re_Ranking-->Consolidation;
-Graph_DB-->Consolidation-->LLM_Prompt_Gen;
+Re_Ranking-->LLM_Prompt_Gen;
+Graph_DB-->LLM_Prompt_Gen;
 LLM_Prompt_Gen-->Response_Gen-->Format_Response-->UI_layer;
+
+style Query_Routing stroke:#0f0,fill:darkblue
+```
+## Development
+```mermaid
+flowchart LR 
+
+data_config-->data_extraction-->data_transformation-->|neo4j <br> graph db|graphdb_data_loading[Quantitative Data & relationships];
+data_extraction-->keyword_extraction-->|Training|spello[Spell correction];
+data_extraction-->data_systhesize-->method_summary-->embedding;
+data_systhesize-->method_keyword-->embedding;
+data_systhesize-->method_Aspect-->embedding;
+data_systhesize-->class_layer-->embedding;
+embedding-->vector_db[Semantic or Similarity Search];
 
 
 ```
-## Development

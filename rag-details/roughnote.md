@@ -279,8 +279,8 @@ Fine-tune on Code-related Tasks: Supplement fine-tuning with code comprehension 
 
 # Workflow
 ## Inference
-
 ```mermaid
+graph TD;
 User_Input_query-->UI_layer;
 
 

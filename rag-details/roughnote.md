@@ -280,7 +280,7 @@ Fine-tune on Code-related Tasks: Supplement fine-tuning with code comprehension 
 # Workflow
 ## Inference flow
 ```mermaid
-flowchart LR
+flowchart
 User_Input_query([User Input])-->UI_layer-->User_query_Enrichment-->Query_Routing((Create Query for each retriavel system));
 Query_Routing-->Graph_DB;
 Query_Routing-->Vectory_DB;
@@ -291,11 +291,11 @@ Re_Ranking-->LLM_Prompt_Gen;
 Graph_DB-->LLM_Prompt_Gen;
 LLM_Prompt_Gen-->Response_Gen-->Format_Response-->UI_layer;
 
-style Query_Routing stroke:#0f0,fill:darkblue
+style Query_Routing stroke:#0f0,fill:#DAFFCB,color:black
 ```
 ## Development
 ```mermaid
-flowchart LR 
+flowchart 
 
 data_config-->data_extraction-->data_transformation-->|neo4j <br> graph db|graphdb_data_loading[Quantitative Data & relationships];
 data_extraction-->keyword_extraction-->|Training|spello[Spell correction];

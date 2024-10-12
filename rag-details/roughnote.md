@@ -280,9 +280,16 @@ Fine-tune on Code-related Tasks: Supplement fine-tuning with code comprehension 
 # Workflow
 ## Inference
 ```mermaid
-graph TD;
-User_Input_query-->UI_layer;
-
+flowchart LR;
+User_Input_query([User Input])-->UI_layer-->User_query_Enrichment-->Query_Routing((Query Rewrite according to retriavel system));
+Query_Routing-->Graph_DB;
+Query_Routing-->Vectory_DB;
+Query_Routing-->BM25;
+Vectory_DB-->Re_Ranking;
+BM25-->Re_Ranking;
+Re_Ranking-->Consolidation;
+Graph_DB-->Consolidation-->LLM_Prompt_Gen;
+LLM_Prompt_Gen-->Response_Gen-->Format_Response-->UI_layer;
 
 
 ```

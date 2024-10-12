@@ -278,7 +278,8 @@ Fine-tune on Code-related Tasks: Supplement fine-tuning with code comprehension 
 
 
 # Workflow
-## Inference flow
+## Inference flow :hourglass: 
+
 ```mermaid
 flowchart
 User_Input_query([User Input])-->UI_layer-->User_query_Enrichment-->Query_Routing((Create Query for each retriavel system));
@@ -293,11 +294,11 @@ LLM_Prompt_Gen-->Response_Gen-->Format_Response-->UI_layer;
 
 style Query_Routing stroke:#0f0,fill:#DAFFCB,color:black
 ```
-## Development
+## Development :running: 
 ```mermaid
 flowchart 
 
-data_config-->data_extraction-->data_transformation-->|neo4j <br> graph db|graphdb_data_loading[Quantitative Data & relationships];
+data_config-->data_extraction[:running: Extract **data** from code repo.]-->data_transformation-->|neo4j <br> graph db|graphdb_data_loading[Quantitative Data & relationships];
 data_extraction-->keyword_extraction-->|Training|spello[Spell correction];
 data_extraction-->data_systhesize-->method_summary-->embedding;
 data_systhesize-->method_keyword-->embedding;

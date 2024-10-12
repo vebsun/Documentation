@@ -259,3 +259,31 @@ Fine-tune on Code-related Tasks: Supplement fine-tuning with code comprehension 
 8. How are bottlenecks identified?
 9. What are the trade-offs between performance and security?
 10. How is performance monitoring implemented?
+
+
+
+# RAG Layers
+
+
+1) UI - To interact with user - start with CUI and later GUI
+2) User Input/Query Enrichment - Enrich the user input for better answering.
+3) Query Routing and Ensembling - Identify how best the query can be answered, does context dataset is related to qualitative or quantiative or both. 
+4) Retrieval - Retrieve the dataset from appropirate database.
+5) Ranking - Rank the output excluding the graphdb resultset.
+6) Response Generation - consolidate the context data, build prompt and generate response to the user query.
+7) Output Formating[optional] - format the generated response if it has to be. In future this could be multimodal response with images generated on the fly based on the response.
+8) Feedback, Logging and Monitoring [Partial]: Ability to log the entire process for further tuning. Ability to obtain the feedback from user. 
+9) Security and Guard Rails [optional]: Being responsible in all aspect, limiting its conversation within the given context. No bias on response.
+10) Personalization [Out of scope]: persist the user role and preferences for response  generation and context details. 
+
+
+# Workflow
+## Inference
+
+```mermaid
+User_Input_query-->UI_layer;
+
+
+
+```
+## Development
